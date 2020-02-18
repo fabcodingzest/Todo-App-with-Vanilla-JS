@@ -2,6 +2,8 @@
 const input = document.querySelector('.input');
 let ul = document.querySelector('.todo');
 let listItems = ul.getElementsByTagName('li');
+let deleteItem = document.querySelectorAll('.trash');
+
 const addTodo = () => {
   alert("it works");
 }
@@ -26,5 +28,14 @@ for (li of listItems)
     {
       this.classList.add('completed');
     }
+  })
+}
+
+//Click on trash icon 
+for (item of deleteItem)
+{
+  item.addEventListener('click', function (event) {
+    event.stopPropagation();
+    this.parentNode.remove();
   })
 }
