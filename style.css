@@ -39,7 +39,7 @@ section {
   width: 100%;
 }
 
-.input {
+.form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,11 +67,16 @@ li {
   background-color: rgb(7, 218, 255);
   border-radius: 5rem;
   font-size: 1.5rem;
+  cursor: pointer;
+  user-select: none;
 }
 i {
   margin-right: 1rem;
 }
-
+.completed {
+  color: grey;
+  text-decoration: line-through;
+}
 footer {
   height: 5vh;
   background-color: #000;
