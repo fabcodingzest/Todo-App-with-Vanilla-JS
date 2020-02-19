@@ -5,9 +5,7 @@ let list = document.querySelector('ul');
 let saveBtn = document.querySelector('.save');
 let clearBtn = document.querySelector('.clear');
 
-loadTodo();
-
-//Click on trash icon
+//delete item when user clicks on trash icon
 function deleteTodo() {
   let deleteItem = document.querySelectorAll('.trash');
   for (item of deleteItem)
@@ -18,6 +16,7 @@ function deleteTodo() {
     })
   }
 }
+
 // Do something when we press enter on input
 input.addEventListener('keypress', function (event) {
   if (event.which === 13)
@@ -42,15 +41,18 @@ input.addEventListener('keypress', function (event) {
   }
 });
 
+//Save data to localStorage with save btn
 saveBtn.addEventListener('click', function () {
   localStorage.setItem('todoList', ul.innerHTML);
 })
 
+//Clear data from localStorage with clear Btn
 clearBtn.addEventListener('click', function () {
   ul.innerHTML = ''
   localStorage.removeItem('todoList', ul.innerHTML);
 })
 
+// Load Todo's from LocalStorage
 function loadTodo() {
   if (localStorage.getItem('todoList'))
   {
@@ -59,7 +61,7 @@ function loadTodo() {
   }
 }
 
-// When li is clicked
+// toggle Check item when li is clicked
 ul.addEventListener('click', function (ev) {
   if (ev.target.tagName === 'LI')
   {
@@ -68,25 +70,8 @@ ul.addEventListener('click', function (ev) {
 }, false
 );
 
+//call loadTodo Funtion to load localStorage data
+loadTodo();
 
-// function completedTodo() {
-//   let listItems = ul.getElementsByTagName('li');
-//   for (li of listItems)
-//   {
-
-//     li.addEventListener('click', function () {
-//       if (this.classList.contains('completed'))
-//       {
-//         this.classList.remove('completed');
-//       } else
-//       {
-//         this.classList.add('completed');
-//       }
-//     })
-//   }
-// }
-
-
-
-
+//implement Delete Todo Functionality
 deleteTodo();
