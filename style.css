@@ -25,12 +25,9 @@ header {
   font-size: 2rem;
   background-color: lightskyblue;
 }
-
 main {
-  height: 80vh;
-  width: 100vw;
+  min-height: 80vh;
 }
-
 section {
   display: flex;
   justify-content: center;
@@ -70,6 +67,7 @@ li {
   cursor: pointer;
   user-select: none;
   display: flex;
+  transition: all 0.3s ease-in-out;
 }
 i {
   margin-right: 1rem;
