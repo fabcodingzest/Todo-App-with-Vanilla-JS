@@ -2,7 +2,10 @@
 const input = document.querySelector('.input');
 let ul = document.querySelector('.todo');
 let list = document.querySelector('ul');
+let saveBtn = document.querySelector('.save');
+let clearBtn = document.querySelector('.clear');
 
+loadTodo();
 
 //Click on trash icon
 function deleteTodo() {
@@ -35,37 +38,55 @@ input.addEventListener('keypress', function (event) {
     spanElement2.classList.add("trash");
     spanElement2.append(icon2);
     if (todoText !== "") ul.appendChild(li).append(spanElement1, todoText, spanElement2);
-    completedTodo();
     deleteTodo();
   }
 });
-sessionStorage.setItem('todoList', ul.innerHTML);
+
+saveBtn.addEventListener('click', function () {
+  localStorage.setItem('todoList', ul.innerHTML);
+})
+
+clearBtn.addEventListener('click', function () {
+  ul.innerHTML = ''
+  localStorage.removeItem('todoList', ul.innerHTML);
+})
 
 function loadTodo() {
-  if (sessionStorage.getItem('todoList'))
+  if (localStorage.getItem('todoList'))
   {
-    ul.innerHTML = sessionStorage.getItem('todoList');
+    ul.innerHTML = localStorage.getItem('todoList');
     deleteTodo();
   }
 }
 
-loadTodo();
-
 // When li is clicked
-function completedTodo() {
-  let listItems = ul.getElementsByTagName('li');
-  for (li of listItems)
+ul.addEventListener('click', function (ev) {
+  if (ev.target.tagName === 'LI')
   {
-
-    li.addEventListener('click', function () {
-      if (this.classList.contains('completed'))
-      {
-        this.classList.remove('completed');
-      } else
-      {
-        this.classList.add('completed');
-      }
-    })
+    ev.target.classList.toggle('completed');
   }
-}
+}, false
+);
 
+
+// function completedTodo() {
+//   let listItems = ul.getElementsByTagName('li');
+//   for (li of listItems)
+//   {
+
+//     li.addEventListener('click', function () {
+//       if (this.classList.contains('completed'))
+//       {
+//         this.classList.remove('completed');
+//       } else
+//       {
+//         this.classList.add('completed');
+//       }
+//     })
+//   }
+// }
+
+
+
+
+deleteTodo();
